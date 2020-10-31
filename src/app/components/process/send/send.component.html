@@ -1,0 +1,249 @@
+<form fxFlex="auto" fxLayout="column" novalidate (ngSubmit)="save()" [formGroup]="sendForm">
+
+
+	<div class="mb-3" fxLayoutGap="1%" fxFlex="auto" fxLayout="row" fxLayout.lt-md="column">
+
+		<mat-card class="example-card pb-5" fxFlex="auto" fxLayout="column">
+			<mat-card-header>
+				<mat-card-title>Sender Info</mat-card-title>
+			</mat-card-header>
+			<mat-card-content fxLayoutGap="4%" fxLayout="column" fxFlex="auto">
+
+				<div fxLayoutGap="2%" fxFlex="auto" fxLayout="row" fxLayout.lt-md="column">
+
+					<mat-form-field fxFlex="auto">
+						<input formControlName="senderFirstname"
+                matInput
+                placeholder="First Name"
+                required/>
+						<mat-error>This field is required</mat-error>
+					</mat-form-field>
+
+					<mat-form-field fxFlex="auto">
+						<input  formControlName="senderLastname"
+                matInput
+                placeholder="Last Name"
+                required/>
+						<mat-error>This field is required</mat-error>
+					</mat-form-field>
+
+				</div>
+
+
+				<div class="row" fxLayoutGap="1%" fxFlex="auto" fxLayout="row" fxLayout.lt-md="column">
+
+					<mat-form-field fxFlex="auto">
+						<mat-label>Doc Type</mat-label>
+						<mat-select #fontSize value="ID" formControlName="senderDocType">
+							<mat-option>
+								<span mat-button>
+                    <mat-icon fontSet="fas" fontIcon="fa-plus">
+                   </mat-icon>
+                  </span>
+							</mat-option>
+
+							<mat-option *ngFor="let doctype of doctypes" value="doctype">{{doctype.name}}</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field fxFlex="auto">
+						<input  formControlName="senderId"
+                type="text"
+                matInput
+                placeholder="ID"
+                />
+						<mat-error>This field is required</mat-error>
+						<mat-icon matSuffix fontSet="fas" fontIcon="fa-id-card"></mat-icon>
+					</mat-form-field>
+				</div>
+
+
+				<div class="row" fxLayoutGap="1%" fxFlex="auto" fxLayout="row" fxLayout.lt-md="column">
+					<mat-form-field fxFlex="auto">
+						<span matPrefix>+&nbsp;</span>
+						<input  formControlName="senderTel"
+              type="tel"
+              matInput
+              placeholder="Phone"
+              inputmode="tel"
+              required/>
+						<mat-error>This field is required</mat-error>
+						<mat-error>Minimum 8 Digits needed</mat-error>
+						<mat-icon matSuffix fontSet="fas" fontIcon="fa-phone"></mat-icon>
+					</mat-form-field>
+
+
+					<mat-form-field fxFlex="auto">
+						<input matInput placeholder="Email"  formControlName="senderEmail"  inputmode="email" >
+						<mat-error>
+							Please enter a valid email address
+						</mat-error>
+						<mat-error>
+							Email is <strong>required</strong>
+						</mat-error>
+						<mat-icon matSuffix fontSet="fas" fontIcon="fa-at"></mat-icon>
+					</mat-form-field>
+
+				</div>
+
+			</mat-card-content>
+		</mat-card>
+
+
+		<mat-card class="example-card pb-5" fxFlex="auto" fxLayout="column">
+			<mat-card-header>
+				<mat-card-title> Receiver Info
+				</mat-card-title>
+			</mat-card-header>
+
+			<mat-card-content fxLayoutGap="4%" fxLayout="column" fxFlex="auto">
+
+
+				<div class="row" fxLayoutGap="1%" fxFlex="auto" fxLayout="row" fxLayout.lt-md="column">
+
+					<mat-form-field fxFlex="auto">
+						<input
+                matInput formControlName="receiverFirstname"
+                placeholder="First Name"
+                 required/>
+						<mat-error>This field is required</mat-error>
+					</mat-form-field>
+
+					<mat-form-field fxFlex="auto">
+						<input formControlName="receiverLastname"
+                matInput
+                placeholder="Last Name"
+                 required/>
+						<mat-error>This field is required</mat-error>
+					</mat-form-field>
+
+				</div>
+
+
+
+				<div class="row" fxLayoutGap="1%" fxFlex="auto" fxLayout="row" fxLayout.lt-md="column">
+					<mat-form-field fxFlex="auto">
+						<mat-icon matSuffix fontSet="fas" fontIcon="fa-globe-americas"></mat-icon>
+
+						<mat-label>Country</mat-label>
+						<mat-select #fontSize value="dominicanrepublic" formControlName="receiverCountry" required>
+							<mat-option>
+								<span mat-button>
+                    <mat-icon fontSet="fas" fontIcon="fa-plus">
+                   </mat-icon>
+                  </span>
+							</mat-option>
+              <mat-option *ngFor="let country of countries" value="country">{{country.name}}</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field fxFlex="auto">
+						<span matPrefix>+ &nbsp;</span>
+						<input formControlName="receiverTel"
+                type="tel"
+                matInput
+                placeholder="Phone"
+                required/>
+						<mat-error>This field is required</mat-error>
+						<mat-error>Minimum 8 Digits needed</mat-error>
+						<mat-icon matSuffix fontSet="fas" fontIcon="fa-phone"></mat-icon>
+					</mat-form-field>
+				</div>
+
+
+
+
+				<div class="row" fxLayoutGap="1%" fxFlex="auto" fxLayout="row" fxLayout.lt-md="column">
+
+					<mat-form-field fxFlex="auto">
+						<mat-icon matSuffix fontSet="fas" fontIcon="fa-gifts"></mat-icon>
+						<mat-label>Gift Value</mat-label>
+
+						<mat-select #fontSize formControlName="giftValue" required>
+
+							<mat-option> 
+								<span mat-button>
+                        <mat-icon fontSet="fas" fontIcon="fa-plus">
+                       </mat-icon>
+                  </span>
+							</mat-option>
+
+							<mat-option *ngFor="let giftvalue of giftvalues" value="giftvalue">{{giftvalue.value}}</mat-option>
+
+						</mat-select>
+					</mat-form-field>
+
+
+					<mat-form-field fxFlex="auto">
+						<input formControlName="giftDesc"
+                type="text"
+                matInput
+                placeholder="Gift description"/>
+         </mat-form-field>
+
+				</div>
+
+			</mat-card-content>
+		</mat-card>
+
+	</div>
+
+
+
+	<div class="confirmation pb-1" fxFlex="auto" fxLayout="row" fxLayoutAlign="end stretch">
+
+		<mat-card fxFlex="25%" fxLayout="column" fxFlex.lt-md="100">
+			<mat-card-header>
+				<mat-card-title>REVIEW</mat-card-title>
+			</mat-card-header>
+
+			<mat-card-content fxLayoutGap="4%" fxLayout="column" fxFlex="auto">
+
+				<div fxLayoutGap="4%" fxFlex="auto" fxLayout="row">
+					<div class="br-1" fxFlex="50">Value</div>
+					<div fxFlex="50">100.00</div>
+				</div>
+
+				<div fxLayoutGap="4%" fxFlex="auto" fxLayout="row">
+					<div class="br-1" fxFlex="50">Fee</div>
+					<div fxFlex="50">4.00</div>
+				</div>
+
+
+				<div style="font-weight:bolder;" fxLayoutGap="4%" fxFlex="auto" fxLayout="row">
+					<div class="br-1" fxFlex="50">Total</div>
+					<div fxFlex="50">104.00</div>
+				</div>
+
+				<div fxLayoutGap="4%" fxFlex="auto" fxLayout="row">
+					<button
+              mat-raised-button
+              class="btn-round-corner"
+              color="primary"
+             fxFlex="auto"   type="submit">
+
+              <mat-icon fontSet="fas" fontIcon="fa-paper-plane"></mat-icon>
+              &nbsp; Send
+            </button>
+				</div>
+
+			</mat-card-content>
+		</mat-card>
+	</div>
+
+	<div fxFlex="auto" fxLayout="row">
+
+		<br>Dirty: {{ sendForm.dirty }}
+		<br>Touched: {{ sendForm.touched }}
+		<br>Valid: {{ sendForm.valid }}
+		<br>Value: {{ sendForm.value | json }}
+
+	</div>
+
+	<div fxFlex="auto" fxLayout="column">
+    {{isLoading}}
+		<button  mat-raised-button (click)="tst()">tst</button>
+	</div>
+
+
+</form>
